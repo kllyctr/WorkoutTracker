@@ -21,13 +21,14 @@ const ExerciseCard: React.FC<Props> = ({ exercise, onToggleComplete, onChangeRep
         </Text>
         
         <View style={styles.repsRow}>
-          <TouchableOpacity style={styles.adjustBtn} onPress={decrease}>
+          <TouchableOpacity style={styles.adjustBtn} onPress={decrease} disabled={exercise.completed}>
             <Text style={styles.adjustText}>-</Text>
           </TouchableOpacity>
 
           <TextInput
             style={styles.input}
             keyboardType="numeric"
+            editable={!exercise.completed}
             value={String(exercise.reps)}
             onChangeText={(txt) => {
               const val = parseInt(txt, 10);
@@ -35,7 +36,7 @@ const ExerciseCard: React.FC<Props> = ({ exercise, onToggleComplete, onChangeRep
             }}
           />
 
-          <TouchableOpacity style={styles.adjustBtn} onPress={increase}>
+          <TouchableOpacity style={styles.adjustBtn} onPress={increase} disabled={exercise.completed}>
             <Text style={styles.adjustText}>+</Text>
           </TouchableOpacity>
 
